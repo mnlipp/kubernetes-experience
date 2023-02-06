@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  namespace: monitoring
+  name: node-exporters
+  labels:
+spec:
+  selector:
+    matchLabels:
+      app: node-exporter
+  podMetricsEndpoints:
+  - port: metrics
+  

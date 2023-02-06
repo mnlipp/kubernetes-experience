@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  namespace: monitoring
+  name: prometheus
+  labels:
+    app: prometheus
+spec:
+  serviceAccountName: prometheus
+  # All ServiceMonitors in own namespace
+  serviceMonitorSelector: {}
+  # All PodMonitors in own namespace
+  podMonitorSelector: {}
+  # Additional
+  additionalScrapeConfigs:
+    name: additional-scrape-configs
+    key: prometheus-additional.yaml  
+  resources:
+    requests:
+      memory: 400Mi
