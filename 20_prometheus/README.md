@@ -28,4 +28,5 @@ Kubernetes-DNS and thus makes the instance easily accessible within the
 cluster. It is also accessible via `kubectl proxy` using
 [http://localhost:8001/api/v1/namespaces/monitoring/services/http:prometheus:web/proxy/](http://localhost:8001/api/v1/namespaces/monitoring/services/http:prometheus:web/proxy/).
 
-Finally, we add scraping the node exporters with a pod monitor.
+Finally, we add scraping the node exporters with a pod monitor and scraping
+the rook-ceph-mgr with a service manager.
