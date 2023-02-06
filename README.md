@@ -23,4 +23,4 @@ which are embedded in the Ceph console use additional information from
 [node exporter](https://github.com/prometheus/node_exporter). So, this is
 where the fun started...
 
- * [Node exporter](10_node-exporter/README.md)
+ * [Node exporter](10_node-exporter/)
