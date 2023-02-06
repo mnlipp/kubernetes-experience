@@ -18,7 +18,7 @@ and thought: hey, where are all those nice Grafana dashboards?
 
 There are instructions for adding 
 [prometheus](https://rook.io/docs/rook/v1.10/Storage-Configuration/Monitoring/ceph-monitoring/),
-but they focus on monitoring Rook (and thus Ceph), but the Grafana dashboards
+but they focus on monitoring Rook (and thus Ceph), while the Grafana dashboards
 which are embedded in the Ceph console use additional information from 
 [node exporter](https://github.com/prometheus/node_exporter). So, this is
 where the fun started...
