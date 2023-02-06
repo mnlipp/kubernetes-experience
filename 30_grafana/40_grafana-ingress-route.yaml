@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana4ceph
+  namespace: rook-ceph
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`grafana4ceph`,`grafana4ceph.lan.mnl.de`)
+    kind: Rule
+    services:
+    - name: grafana
+      port: 3000

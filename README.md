@@ -25,4 +25,5 @@ where the fun started...
 
  * [Node exporter](10_node-exporter/)
  * [Prometheus](20_prometheus/)
+ * [Grafana](30_grafana)
  
