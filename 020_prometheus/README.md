@@ -29,4 +29,7 @@ cluster. It is also accessible via `kubectl proxy` using
 [http://localhost:8001/api/v1/namespaces/monitoring/services/http:prometheus:web/proxy/](http://localhost:8001/api/v1/namespaces/monitoring/services/http:prometheus:web/proxy/).
 
 Finally, we add scraping the node exporters with a pod monitor and scraping
-the rook-ceph-mgr with a service manager.
+the rook-ceph-mgr with a service manager. When scraping from the 
+node exporters, the value of `__meta_kubernetes_pod_node_name` must be 
+[used as instance label](https://github.com/prometheus-operator/prometheus-operator/issues/135) else metrics will be recorded by the cluster IP address 
+(which usually changes after each boot).

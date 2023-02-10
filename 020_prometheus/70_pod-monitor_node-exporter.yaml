@@ -10,4 +10,9 @@ spec:
       app: node-exporter
   podMetricsEndpoints:
   - port: metrics
-  
+    # See https://github.com/prometheus-operator/prometheus-operator/issues/135
+    relabelings:
+    - action: replace
+      targetLabel: instance
+      sourceLabels:
+      - __meta_kubernetes_pod_node_name
