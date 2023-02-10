@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`grafana4ceph`,`grafana4ceph.lan.mnl.de`)
+  - match: Host(`grafana4ceph`,`grafana4ceph.tc1.mnl.de`)
     kind: Rule
     services:
     - name: grafana

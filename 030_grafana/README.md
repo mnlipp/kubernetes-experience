@@ -21,7 +21,8 @@ resources available (dimensioned for usage, not for initialization).
 
 Access to the Grafana instance is made available with ingress because
 the Grafana dashboards are embedded in the Ceph dashboard with iframes
-and must therefore be accessible from outside the cluster.
+and must therefore be accessible from outside the cluster. Adapt the
+hostname and configure your local DNS (or static entries in your router).
 
 Finally, set the grafana-url in ceph.
 
