@@ -12,7 +12,8 @@ spec:
     matchLabels:
       app: rook-ceph-mgr
       rook_cluster: rook-ceph
-      ceph_daemon_id: a
+# See https://github.com/rook/rook/issues/11638
+#      ceph_daemon_id: a
   endpoints:
   - port: http-metrics
     path: /metrics

@@ -23,7 +23,13 @@ which are embedded in the Ceph console use additional information from
 [node exporter](https://github.com/prometheus/node_exporter). So, this is
 where the fun started...
 
- * [Node exporter](10_node-exporter/)
- * [Prometheus](20_prometheus/)
- * [Grafana](30_grafana)
+ * [Node exporter](010_node-exporter/)
+ * [Prometheus](020_prometheus/)
+ * [Grafana](030_grafana)
+ 
+# More...
+ 
+Having a working ceph, let's add some more useful things.
+
+ * [Storage class](100_storage-class)
  
