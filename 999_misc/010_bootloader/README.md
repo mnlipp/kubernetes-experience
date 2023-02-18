@@ -2,7 +2,7 @@
 
 Grub2 boots almost everything, but it 
 [fails to generate](https://savannah.gnu.org/bugs/?63796) a 
-configuration if ypi use LVM2 and the root file system is a 
+configuration if you use LVM2 and the root file system is a 
 RAID1 LV with SSD caching on top.
 
 A modern alternative is 
