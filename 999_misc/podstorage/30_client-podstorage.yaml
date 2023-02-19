@@ -1,0 +1,11 @@
+apiVersion: ceph.rook.io/v1
+kind: CephClient
+metadata:
+  name: podstorage
+  namespace: rook-ceph
+spec:
+  caps:
+    mds: 'allow r, allow rw path=/'
+    mon: 'allow r'
+    osd: 'allow rw tag cephfs data=podstorage'
+
