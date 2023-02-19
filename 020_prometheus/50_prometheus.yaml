@@ -14,7 +14,17 @@ spec:
   # Additional
   additionalScrapeConfigs:
     name: additional-scrape-configs
-    key: prometheus-additional.yaml  
+    key: prometheus-additional.yaml
   resources:
     requests:
       memory: 400Mi
+  # Remove the rest if you don't need long term storage
+  storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: rook-cephfs
+        resources:
+          requests:
+            storage: 40Gi
+  securityContext:
+    fsGroup: 65534
