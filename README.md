@@ -32,4 +32,7 @@ where the fun started...
 Having a working ceph, let's add some more useful things.
 
  * [Storage class](100_storage-class)
+ * [Grafana](110_grafana) Again? Yes!
+ 
+ 
  

@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: monitoring
+  name: grafana-config
+data:
+  grafana.ini: |
+    [server]
+    protocol = http
+    
+    [auth.anonymous]
+    enabled = true
+    org_name = Main Org.
+    org_role = Viewer
+
+    [security]
+
+    [users]
+    default_theme = light
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: monitoring
+  name: grafana-datasources
+data:
+  prometheus.yaml: |
+    apiVersion: 1
+    datasources:
+    - name: monitoring
+      orgId: 1
+      type: prometheus
+      url: http://prometheus.monitoring:9090
+      isDefault: true
+      version: 1
+      editable: true

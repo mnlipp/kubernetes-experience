@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: monitoring
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana:latest
+        env:
+        - name: GF_PATHS_CONFIG
+          value: /var/run/grafana/grafana.ini
+        - name: GF_INSTALL_PLUGINS
+          value: vonage-status-panel,grafana-piechart-panel
+        volumeMounts:
+          - name: grafana-config
+            mountPath: /var/run/grafana
+          - name: grafana-datasources
+            mountPath: /etc/grafana/provisioning/datasources
+          - name: grafana-pv
+            mountPath: /var/lib/grafana
+        ports:
+        - containerPort: 3000
+          name: http
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: http
+        resources:
+          limits:
+            cpu: 200m
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+      volumes:
+      - name: grafana-config
+        configMap:
+          name: grafana-config
+      - name: grafana-datasources
+        configMap:
+          name: grafana-datasources
+      - name: grafana-pv
+        persistentVolumeClaim:
+            claimName: grafana-pvc
+      securityContext:
+        fsGroup: 472
+        supplementalGroups:
+          - 0
