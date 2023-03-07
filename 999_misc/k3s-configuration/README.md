@@ -22,13 +22,13 @@ an entry in `/etc/fstab` and mount/test with `mount -a`) and start k3s again.
 As k3s is not the only application running on my servers, they are
 "partially pets", not cattle. Therefore two HDDs have been put in a
 LVM volume group and the root file system has been created in
-a "raid1 + SSD cache" setup. Therefore I don't want k3s' local-path
+a "raid1 + SSD cache" setup. So I don't want k3s' local-path
 storage on this filesystem.
 
 Luckily, this can easily be handled with an addition setup parameter:
 
 ```
---default-local-storage-path /var/local/k3s/storage
+--default-local-storage-path /var/local/k3s/local-path
 ```
 
 Make sure that the directory exists before starting k3s for the first
