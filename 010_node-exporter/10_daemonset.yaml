@@ -27,6 +27,7 @@ spec:
         - --collector.filesystem.ignored-mount-points=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/pods/.+)($|/)
         - --collector.netclass.ignored-devices=^(veth.*)$
         - --collector.netdev.device-exclude=^(veth.*)$
+        - --collector.textfile.directory=/var/lib/prometheus/node-exporter
         ports:
         - containerPort: 9100
           hostPort: 9100
@@ -48,6 +49,10 @@ spec:
           mountPropagation: HostToContainer
           name: sys
           readOnly: true
+        - mountPath: /var/lib/prometheus/node-exporter
+          mountPropagation: HostToContainer
+          name: text
+          readOnly: false
       restartPolicy: Always
       nodeSelector:
         kubernetes.io/os: linux
@@ -63,3 +68,6 @@ spec:
       - hostPath:
           path: /sys
         name: sys
+      - hostPath:
+          path: /var/lib/prometheus/node-exporter
+        name: text
