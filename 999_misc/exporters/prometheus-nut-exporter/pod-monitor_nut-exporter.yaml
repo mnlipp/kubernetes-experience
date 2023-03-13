@@ -10,7 +10,7 @@ spec:
       app: prometheus-nut-exporter
   podMetricsEndpoints:
   - port: metrics
-    params: { target: ["olymp.lan.mnl.de:3493"] }
+    params: { target: ["host:3493"] }
     # See https://github.com/prometheus-operator/prometheus-operator/issues/135
     relabelings:
     - action: replace
