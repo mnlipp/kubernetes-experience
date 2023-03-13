@@ -1,0 +1,12 @@
+[Unit]
+Description=Collector for SMART values
+After=network-online.target
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/smartmon-prometheus
+ExecStart=/opt/smartmon-prometheus.sh
+Restart=always
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: monitoring
+  name: prometheus-nut-exporter
+  labels:
+    app: prometheus-nut-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-nut-exporter
+  template:
+    metadata:
+      labels:
+        app: prometheus-nut-exporter
+    spec:
+      containers:
+      - name: prometheus-nut-exporter
+        image: hon95/prometheus-nut-exporter
+        env:
+        - name: HTTP_PATH
+          value: "/metrics"
+        - name: HTTP_PORT
+          value: "9100"
+        ports:
+        - name: metrics
+          containerPort: 9100
