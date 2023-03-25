@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: docker-registry
+  name: docker-registry
+  labels:
+    app: docker-registry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docker-registry
+  template:
+    metadata:
+      labels:
+        app: docker-registry
+    spec:
+      containers:
+      - name: docker-registry
+        image: registry
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        volumeMounts:
+        - name: storage
+          mountPath: /var/lib/registry
+        env:
+        - name: REGISTRY_HTTP_ADDR
+          value: :5000
+        - name: REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY
+          value: /var/lib/registry
+      volumes:
+      - name: storage
+        emptyDir: {} # TODO -make this more permanent later
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: docker-registry
+  name: docker-registry-service
+spec:
+  selector:
+    app: docker-registry
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  namespace: docker-registry
+  name: docker-registry-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`docker-registry`,`docker-registry.domain.org`)
+    kind: Rule
+    services:
+    - name: docker-registry-service
+      port: 5000
+        
