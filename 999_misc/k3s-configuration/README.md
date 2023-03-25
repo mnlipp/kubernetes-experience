@@ -17,6 +17,10 @@ be sufficient), stop k3s, move the content of `${data-dir}/server/db`
 to the new file system, mount it on `${data-dir}/server/db` (create
 an entry in `/etc/fstab` and mount/test with `mount -a`) and start k3s again.
 
+Note that `--cluster-reset` deletes the directory with the mount point 
+for the fast (SSD) filesystem mounted on `${data-dir}/server/db`. So take 
+care to re-mount before starting k3s again after a cluster reset.
+
 ## Local-path storage
 
 As k3s is not the only application running on my servers, they are
@@ -33,3 +37,20 @@ Luckily, this can easily be handled with an addition setup parameter:
 
 Make sure that the directory exists before starting k3s for the first
 time.
+
+## Load balancer
+
+I use MetalLB because k3s' built-in load balancer does not support
+virtual IPs. Requires k3s to be installed with `--disable=servicelb`.
+
+## Traefik
+
+It is unnecessarily difficult to configure k3s' built-in Traefik.
+So I install it with `--disable=traefik` and add Traefik myself.
+
+```sh
+helm repo add traefik https://helm.traefik.io/traefik
+helm repo update
+kubectl create namespace traefik
+helm install -f traefik-chart-values.yaml traefik traefik/traefik --namespace=traefik
+```
