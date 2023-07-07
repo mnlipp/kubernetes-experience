@@ -1,5 +1,9 @@
 # Prometheus
 
+(Note that this directory includes a file kustomization.yaml that you
+should ignore if you go through this step by step. It's purpose will
+be explained when installing Argo CD.)
+
 I'll put the most general aspects of Prometheus in the `monitoring`
 namespace.
 
@@ -19,7 +23,10 @@ The Prometheus operator does not support the "subscribe for scraping"
 mechanism that you can see in many examples (using annotation
 `prometheus.io/scrape: true`). The required Prometheus configuration has
 to be "passed through" as described 
-[here](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/additional-scrape-config.md).
+[here](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/additional-scrape-config.md). The method described there
+is rather tedious, so I use kustomize. Calling `kubectl apply -k 45_additional/`
+Uses the specification in `45_additional/kustomization.yaml` to generate the
+secret and apply it.
 
 Before creating the Prometheus instance, you have to decide if you want
 to keep the collected data for the lifetime of the pod or as long term
