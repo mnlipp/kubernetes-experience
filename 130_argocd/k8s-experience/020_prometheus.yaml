@@ -4,7 +4,7 @@ metadata:
   name: prometheus
   namespace: argocd
 spec:
-  project: k8s-experience-olymp
+  project: k8s-experience
   source:
     repoURL: https://github.com/mnlipp/kubernetes-experience.git
     targetRevision: main
