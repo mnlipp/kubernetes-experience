@@ -1,0 +1,15 @@
+# Default values for traefik.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# See https://github.com/argoproj/argo-cd/issues/1704#issuecomment-980531495
+
+traefik:
+  providers:
+    kubernetesIngress:
+      publishedService:
+        enabled: true
+
+  service:
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: 192.168.19.10

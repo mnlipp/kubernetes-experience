@@ -1,0 +1,9 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  namespace: traefik
+  name: http2https
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: false
