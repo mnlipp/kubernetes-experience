@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: node-exporter
+  namespace: argocd
+spec:
+  project: k8s-experience-olymp
+  source:
+    repoURL: https://github.com/mnlipp/kubernetes-experience.git
+    targetRevision: main
+    path: 010_node-exporter
+  destination:
+    name: in-cluster
+    namespace: monitoring

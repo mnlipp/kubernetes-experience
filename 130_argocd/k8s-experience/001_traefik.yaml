@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+spec:
+  project: k8s-experience-olymp
+  source:
+    repoURL: https://github.com/mnlipp/kubernetes-experience.git
+    path: 999_misc/k3s-configuration/traefik
+    helm:
+      releaseName: traefik
+  destination:
+    name: in-cluster
+    namespace: traefik
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    

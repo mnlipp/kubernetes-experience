@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  namespace: argocd
+  name: k8s-experience
+spec:
+  sourceRepos:
+    - https://github.com/mnlipp/kubernetes-experience.git
+    - https://helm.traefik.io/traefik
+    - https://charts.jetstack.io
+  destinations:
+    - name: '*'
+      namespace: '*'
+      server: '*'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+status: {}

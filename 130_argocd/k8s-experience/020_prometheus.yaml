@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+spec:
+  project: k8s-experience-olymp
+  source:
+    repoURL: https://github.com/mnlipp/kubernetes-experience.git
+    targetRevision: main
+    path: 020_prometheus
+  destination:
+    name: in-cluster
+    namespace: monitoring
