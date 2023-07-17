@@ -10,6 +10,6 @@ We create
  * a datasource for our prometheus (as a convenience),
  * the Grafana [instance](30_grafana-deployment.yaml) itself,
  * a service and
- * an ingress route.
+ * an ingress.
  
 A nice dashboard is "Node Exporter Full" (1860).
