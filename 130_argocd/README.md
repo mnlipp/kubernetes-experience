@@ -39,6 +39,10 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 ## Take over existing deployments
 
+If you use a private repository (as you should), make sure to first
+add this repository in the GUI. Don't forget to add any required
+known host entries or certificates.
+
 If you have not done it yet, apply `20_project.yaml` to get 
 this "setup-project" started.
 
