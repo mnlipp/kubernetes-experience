@@ -52,5 +52,5 @@ So I install it with `--disable=traefik` and add Traefik myself.
 helm repo add traefik https://helm.traefik.io/traefik
 helm repo update
 kubectl create namespace traefik
-helm install -f traefik-chart-values.yaml traefik traefik/traefik --namespace=traefik
+helm install -f values.yaml traefik . --namespace=traefik
 ```
