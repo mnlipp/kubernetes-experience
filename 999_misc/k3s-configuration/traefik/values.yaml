@@ -12,4 +12,4 @@ traefik:
 
   service:
     annotations:
-      metallb.universe.tf/loadBalancerIPs: 192.168.19.10
+      metallb.universe.tf/loadBalancerIPs: 192.168.179.20
