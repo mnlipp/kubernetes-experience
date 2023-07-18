@@ -7,7 +7,6 @@ spec:
   project: k8s-experience
   source:
     repoURL: https://github.com/mnlipp/kubernetes-experience.git
-    targetRevision: main
     path: 120_grafana
   destination:
     name: in-cluster

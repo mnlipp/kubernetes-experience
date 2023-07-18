@@ -7,7 +7,6 @@ spec:
   project: k8s-experience
   source:
     repoURL: https://github.com/mnlipp/kubernetes-experience.git
-    targetRevision: main
     path: 010_node-exporter
   destination:
     name: in-cluster
