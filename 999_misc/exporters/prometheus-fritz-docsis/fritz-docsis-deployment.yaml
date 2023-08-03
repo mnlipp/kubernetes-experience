@@ -1,0 +1,51 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: fritz-docsis
+  namespace: monitoring
+  labels:
+    app: fritz-docsis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fritz-docsis
+  template:
+    metadata:
+      labels:
+        app: fritz-docsis
+    spec:
+      containers:
+        - name: fritz-docsis
+          image: ghcr.io/mnlipp/fritzdocsis:0.4.0
+          command:
+            - /fritzDocsis
+          args:
+            - '--url=$(URL)'
+            - '--username=$(USERNAME)'
+            - '--password=$(PASSWORD)'
+          ports:
+            - containerPort: 2112
+              protocol: TCP
+          env:
+            - name: URL
+              valueFrom:
+                configMapKeyRef:
+                  name: fritz-docsis-config
+                  key: url
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: fritz-docsis-secret
+                  key: username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fritz-docsis-secret
+                  key: password
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
