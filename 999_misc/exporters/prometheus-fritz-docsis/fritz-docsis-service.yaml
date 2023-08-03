@@ -1,15 +1,14 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: fritz-docsis
   namespace: monitoring
   annotations:
-    prometheus.io/scrape: 'true'
+    prometheus.io/scrape: "true"
 spec:
+  type: NodePort
   ports:
-    - protocol: TCP
-      port: 9100
-      targetPort: 2112
+  - port: 9100
+    targetPort: 2112
   selector:
     app: fritz-docsis
-  type: NodePort

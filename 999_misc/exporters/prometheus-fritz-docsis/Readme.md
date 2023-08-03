@@ -19,7 +19,8 @@ kubectl -n monitoring create secret generic fritz-docsis-secret --from-literal=u
 
 ## Deploy fritzDocsis
 
-Using this [descriptor](fritz-docsis-deployment.yaml).
+Using this [descriptor](fritz-docsis-deployment.yaml) (copied from
+[here](https://github.com/mnlipp/fritzdocsis/tree/fritzdocsis-k8s/k8s)).
 
 ## Deploy the Service
 
