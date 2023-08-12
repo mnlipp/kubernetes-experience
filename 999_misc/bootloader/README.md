@@ -14,6 +14,8 @@ The best instructions for the "Fedora family" that I could find are
 [here](https://kowalski7cc.xyz/blog/systemd-boot-fedora-32/).
 They can be used for AlmaLinux with only small additions.
 
+*systemd-boot seems to have become part of the systemd package with 9.2 and does not have to be installed any more*
+
 Package `systemd-boot` for AlmaLinux is available from EPEL, install it 
 first, then follow the steps described. After creating the directory
 `/efi` run `restorecon -R /efi`.
