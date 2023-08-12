@@ -16,6 +16,8 @@ They can be used for AlmaLinux with only small additions.
 
 *systemd-boot seems to have become part of the systemd package with 9.2 and does not have to be installed any more*
 
+*Also see [Arch wiki](https://wiki.archlinux.org/title/Systemd-boot#Updating_the_EFI_boot_manager).*
+
 Package `systemd-boot` for AlmaLinux is available from EPEL, install it 
 first, then follow the steps described. After creating the directory
 `/efi` run `restorecon -R /efi`.
