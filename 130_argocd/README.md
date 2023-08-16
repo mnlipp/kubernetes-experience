@@ -53,4 +53,15 @@ Again, remember to adjust the repository URL where necessary.
 Make sure to `helm uninstall` traefik and cert-manager before 
 taking them over.
 
+## Tracking with annotations
 
+[Tracking with annotations](https://argo-cd.readthedocs.io/en/stable/user-guide/resource_tracking/)
+avoids problems with double usage of the `app.kubernetes.io/instance` label and
+should therefore be enabled. Add the following data to the config map.
+
+```
+apiVersion: v1
+data:
+  application.resourceTrackingMethod: annotation
+kind: ConfigMap
+```
