@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- 10_prometheus-operator-bundle.yaml
+- https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/release-0.70/bundle.yaml
 - 20_service-account.yaml
 - 30_cluster-role.yaml
 - 40_cluster-role-binding.yaml
@@ -11,6 +11,7 @@ resources:
 - 60_prometheus-service.yaml
 - 70_pod-monitor_node-exporter.yaml
 - 80_service-monitor-rook-ceph-mgr.yaml
+- 90_service-kubelet-metrics.yaml
 
 patches:
 - patch: |-
