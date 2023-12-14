@@ -54,3 +54,8 @@ helm repo update
 kubectl create namespace traefik
 helm install -f values.yaml traefik . --namespace=traefik
 ```
+
+## Volume snapshots
+
+k3s does not support [volume snapshots] out-of-the-box. We have to
+[add this feature](snapshots/README.md).
