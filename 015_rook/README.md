@@ -3,10 +3,7 @@
 ## Base Setup
 
 This uses Kustomization to effectively do what is described in the
-[instructions](https://rook.io/docs/rook/v1.10/Getting-Started/quickstart/#tldr).
-
-k3s lacks the local storage class which caused problems, therefore it's
-introduced here.
+[instructions](https://rook.io/docs/rook/latest-release/Getting-Started/quickstart/#tldr).
 
 ## Tuning
 
