@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: rook-ceph
+  name: ceph-dashboard
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-http2https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: ceph.tc1.mnl.de
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: rook-ceph-mgr-dashboard
+            port:
+              number: 8080
+  tls:
+  - hosts:
+    - ceph.tc1.mnl.de
+    secretName: ceph-dashboard-cert

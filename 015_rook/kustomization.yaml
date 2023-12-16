@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- https://github.com/rook/rook/raw/release-1.12/deploy/examples/crds.yaml
-- https://github.com/rook/rook/raw/release-1.12/deploy/examples/common.yaml
-- https://github.com/rook/rook/raw/release-1.12/deploy/examples/operator.yaml
-- https://github.com/rook/rook/raw/release-1.12/deploy/examples/cluster.yaml
-#- https://github.com/rook/rook/raw/release-1.12/deploy/examples/monitoring/rbac.yaml
-- 060_dashboard-external-https.yaml
+- https://github.com/rook/rook/raw/release-1.13/deploy/examples/crds.yaml
+- https://github.com/rook/rook/raw/release-1.13/deploy/examples/common.yaml
+- https://github.com/rook/rook/raw/release-1.13/deploy/examples/operator.yaml
+- https://github.com/rook/rook/raw/release-1.13/deploy/examples/cluster.yaml
+- https://github.com/rook/rook/raw/release-1.13/deploy/examples/monitoring/rbac.yaml
+- 060_dashboard-ingress.yaml
 - 070_filesystem-mainshare.yaml
 - 080_client-mainshare.yaml
 - 090_filesystem-podstorage.yaml
@@ -36,6 +36,10 @@ patches:
         modules:
         - name: rook
           enabled: true
+      dashboard:
+        enabled: true
+        port: 8080
+        ssl: false
       monitoring:
         enabled: true
       network:
