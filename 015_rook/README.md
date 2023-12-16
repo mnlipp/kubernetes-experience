@@ -8,6 +8,12 @@ This uses Kustomization to effectively do what is described in the
 k3s lacks the local storage class which caused problems, therefore it's
 introduced here.
 
+## Tuning
+
+As OSDs are started and managed by rook, 
+[ceph (auto) tuning](https://docs.ceph.com/en/latest/cephadm/install/#enabling-osd-memory-autotuning) does not work. Rather requests are set in `kustomization.yaml`
+using kubernetes mechanisms.
+
 ## File Systems
 
 Nothing fancy here, just a general file system for use by clients 

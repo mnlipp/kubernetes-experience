@@ -41,3 +41,8 @@ patches:
       network:
         # Because we want to support client access
         provider: host
+      resources:
+        osd:
+          requests:
+            cpu: "1000m"
+            memory: "1024Mi"
