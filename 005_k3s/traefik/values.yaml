@@ -13,3 +13,4 @@ traefik:
   service:
     annotations:
       metallb.universe.tf/loadBalancerIPs: 192.168.179.20
+      metallb.universe.tf/allow-shared-ip: single-common
