@@ -5,7 +5,7 @@ metadata:
   name: k8s-experience
 spec:
   sourceRepos:
-    - ssh://gitolite3@hestia.lan.mnl.de/k8s-experience-tc1.git
+    - https://github.com/mnlipp/kubernetes-experience.git
     - https://helm.traefik.io/traefik
     - https://charts.jetstack.io
     - https://piraeus.io/helm-charts
