@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  namespace: argocd
+  name: k8s-experience
+spec:
+  sourceRepos:
+    - ssh://gitolite3@hestia.lan.mnl.de/k8s-experience-tc1.git
+    - https://helm.traefik.io/traefik
+    - https://charts.jetstack.io
+    - https://piraeus.io/helm-charts
+  destinations:
+    - name: '*'
+      namespace: '*'
+      server: '*'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k8s-experience
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+spec:
+  project: k8s-experience
+  source:
+    repoURL: ssh://gitolite3@hestia.lan.mnl.de/k8s-experience-tc1.git
+    path: 007_argocd/k8s-experience
+  destination:
+    name: in-cluster
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+
+ 

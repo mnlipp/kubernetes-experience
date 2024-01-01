@@ -19,15 +19,13 @@ Use URL: [http://localhost:8080](http://localhost:8080)
 
 ### Access UI (with ingress)
 
-Apply `20_project.yaml` to get our "setup-project" started. You will
-probably want to adjust the first source project to match your
-private clone of this repository.
+File `20_argocd-config/10_argocd-ingress.yaml` configurtes access to the GUI.
+You can apply it immediately. However, while Argo CD cannot manage 
+Argo CD, we can at least put it's "configuration" under Argo CD's control.
 
-While Argo CD cannot manage Argo CD, we can at least put it's
-"add-ons" under Argo CD's control.
-
-Apply `30_argocd-app.yaml` to configure ingress for Argo CD. Adjust the
-repository URL.
+So, better apply `30_argocd_app/10_argocd-app.yaml` to configure ingress for 
+Argo CD. Adjust the repository URL. The configuration application
+is created in the default project.
 
 ### Accces UI (common)
 
@@ -37,31 +35,12 @@ Get secret:
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 
-## Take over existing deployments
+## Take over existing and future deployments
 
 If you use a private repository (as you should), make sure to first
 add this repository in the GUI. Don't forget to add any required
 known host entries or certificates.
 
-If you have not done it yet, apply `20_project.yaml` to get 
-this "setup-project" started.
-
 Now we can put all previously installed applications under
 Argo CD's control by applying the files in `k8s-experience`.
 Again, remember to adjust the repository URL where necessary.
-
-Make sure to `helm uninstall` traefik and cert-manager before 
-taking them over.
-
-## Tracking with annotations
-
-[Tracking with annotations](https://argo-cd.readthedocs.io/en/stable/user-guide/resource_tracking/)
-avoids problems with double usage of the `app.kubernetes.io/instance` label and
-should therefore be enabled. Add the following data to the config map.
-
-```
-apiVersion: v1
-data:
-  application.resourceTrackingMethod: annotation
-kind: ConfigMap
-```

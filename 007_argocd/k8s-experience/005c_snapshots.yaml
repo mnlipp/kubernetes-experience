@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: snapshot-controller
+  namespace: argocd
+spec:
+  project: k8s-experience
+  source:
+    repoURL: 'https://piraeus.io/helm-charts'
+    targetRevision: 2.0.3
+    chart: snapshot-controller
+  destination:
+    namespace: kube-system
+    name: in-cluster

@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: trust-manager
+  namespace: argocd
+spec:
+  project: k8s-experience
+  source:
+    repoURL: https://charts.jetstack.io
+    targetRevision: v0.7.0
+    chart: trust-manager
+    helm:
+      parameters:
+        - name: installCRDs
+          value: "true"
+  destination:
+    name: in-cluster
+    namespace: cert-manager
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

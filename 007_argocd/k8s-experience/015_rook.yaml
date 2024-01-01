@@ -1,13 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-config
+  name: rook
   namespace: argocd
 spec:
-  project: default
+  project: k8s-experience
   source:
     repoURL: https://github.com/mnlipp/kubernetes-experience.git
-    path: 007_argocd/20_argocd-config
+    path: 015_rook
   destination:
     name: in-cluster
-    namespace: argocd
+    namespace: rook-ceph
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
